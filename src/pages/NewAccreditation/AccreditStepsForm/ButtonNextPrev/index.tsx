@@ -18,30 +18,33 @@ const ButtonNextPrev = forwardRef<HTMLButtonElement, Props>((props, ref: Forward
     const { state } = useAccreditStepsContext()
 
     const {
+        sizeButton,
         ...rest
     } = props
 
     return (
         <Box {...rest} sx={styles.container} ref={ref}>
 
-            <Tooltip title={description.CONFIG.BUTTONS.STEPS.STEP_NEXT}>
-                <Button variant="outlined" color="primary" onClick={handleBack}>
-                    {description.CONFIG.BUTTONS.STEPS.STEP_PREV}
-                </Button>
-            </Tooltip>
-
             {
-                // state.activeStep === 3 ?
+                state.activeStep !== EAccreditSteps.ProviderData &&
+                <Tooltip title={description.CONFIG.BUTTONS.STEPS.STEP_NEXT}>
+                    <Button variant="outlined" color="primary" onClick={handleBack}>
+                        {description.CONFIG.BUTTONS.STEPS.STEP_PREV}
+                    </Button>
+                </Tooltip>
+            }
+            {
+                // state.activeStep === EAccreditSteps.ConfirmationData ?
                 //     <Button variant="contained" color="primary" type="submit">
                 //         {description.CONFIG.BUTTONS.STEPS.SEND}
                 //     </Button> 
                 //     :
-                
-                    <Tooltip title={description.CONFIG.BUTTONS.STEPS.STEP_NEXT}>
-                        <Button variant="outlined" color="primary" onClick={handleNext}>
-                            {description.CONFIG.BUTTONS.STEPS.STEP_NEXT}
-                        </Button>
-                    </Tooltip>
+
+                <Tooltip title={description.CONFIG.BUTTONS.STEPS.STEP_NEXT}>
+                    <Button size={sizeButton} variant="outlined" color="primary" onClick={handleNext}>
+                        {description.CONFIG.BUTTONS.STEPS.STEP_NEXT}
+                    </Button>
+                </Tooltip>
             }
         </Box >
     )
