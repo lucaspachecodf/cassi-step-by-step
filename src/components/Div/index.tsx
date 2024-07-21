@@ -7,7 +7,7 @@ type Props = {
     sxStack?: SxProps<Theme>
 }
 
-type DivProps = React.ComponentProps<typeof Stack> & Props;
+type DivProps = React.ComponentProps<typeof Box> & Props;
 
 const Div: FC<DivProps> = (props) => {
 

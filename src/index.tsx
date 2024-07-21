@@ -1,15 +1,21 @@
 import ReactDOM from 'react-dom/client';
 import App from './pages/App';
 import reportWebVitals from './reportWebVitals';
-import { HashRouter } from 'react-router-dom';
+import { AlertProvider } from 'contexts';
+import { ThemeProvider } from '@emotion/react';
+import theme from './styles/theme';
+import SpinnerOverlay from 'components/SpinnerOverlay';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <HashRouter>
-    <App />
-  </HashRouter>
+  <ThemeProvider theme={theme}>
+    <AlertProvider >      
+        <App />      
+      <SpinnerOverlay />
+    </AlertProvider>
+  </ThemeProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -6,9 +6,9 @@ import Paragraph from "components/Paragraph";
 import { Grid } from "@mui/material";
 import GridContainer from "components/GridContainer";
 import Div from "components/Div";
+import AccreditStepsForm from "./AccreditStepsForm";
 
 const NewAccreditation = () => {
-
   return (
     <GridContainer item justifyContent="space-between" alignItems="center">
       <Grid item xs={12} sm={5}>
@@ -24,19 +24,7 @@ const NewAccreditation = () => {
         </Div>
       </Grid>
       <Grid item xs={12} sm={7}>
-        <Div>
-          <Title variant="h5">Formulário</Title>
-          <Title variant="h5">Formulário</Title>
-          <Title variant="h5">Formulário</Title>
-          <Title variant="h5">Formulário</Title>
-          <Title variant="h5">Formulário</Title>
-
-          <Title variant="h5">Formulário</Title>
-          <Title variant="h5">Formulário</Title>
-          <Title variant="h5">Formulário</Title>
-          <Title variant="h5">Formulário</Title>
-          <Title variant="h5">Formulário</Title>
-        </Div>
+        <AccreditStepsForm />
       </Grid>
     </GridContainer>
   );

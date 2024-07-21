@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, BrowserRouter as Router } from "react-router-dom";
 import Accredited from "pages/Accredited";
 import WantToBeAccredited from "pages/WantToBeAccredited";
 import NewAccreditation from "pages/NewAccreditation";
@@ -6,7 +6,7 @@ import NotFound from "pages/NotFound";
 
 const RootRoute = () => {
     return (
-        <>            
+        <Router>
             <Routes>
                 <Route path="/" element={<Navigate replace to="new-accreditation" />} />
 
@@ -21,7 +21,7 @@ const RootRoute = () => {
                 } />
                 <Route path="/:pageName" element={<NotFound />} />
             </Routes>
-        </>
+        </Router>
     )
 }
 

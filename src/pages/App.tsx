@@ -14,7 +14,7 @@ function App() {
       <GlobalStyles styles={styles.globalStyles} />
       <CssBaseline />
       <Header />
-      <Container spacing={2}>
+      <Container spacing={2} sx={styles.container}>
         <RootRoute />
       </Container>
       <Footer />
