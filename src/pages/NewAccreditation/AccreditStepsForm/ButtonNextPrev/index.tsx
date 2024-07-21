@@ -4,6 +4,8 @@ import description from 'utils/description'
 import useStyles from './styles'
 import { ForwardedRef, forwardRef } from 'react'
 import Button from 'components/Button'
+import useAccreditSteps from 'hooks/accredit/useSteps'
+import { useAccreditStepsContext } from 'contexts'
 
 type Props = {
     sizeButton?: "small" | "medium" | "large" | undefined
@@ -12,9 +14,10 @@ type Props = {
 const ButtonNextPrev = forwardRef<HTMLButtonElement, Props>((props, ref: ForwardedRef<HTMLButtonElement>) => {
 
     const styles = useStyles()
+    const { steps, handleBack, handleNext } = useAccreditSteps()
+    const { state } = useAccreditStepsContext()
 
     const {
-        sizeButton = 'large',
         ...rest
     } = props
 
@@ -22,20 +25,24 @@ const ButtonNextPrev = forwardRef<HTMLButtonElement, Props>((props, ref: Forward
         <Box {...rest} sx={styles.container} ref={ref}>
 
             <Tooltip title={description.CONFIG.BUTTONS.STEPS.STEP_NEXT}>
-                <Button variant="outlined" color="primary" onClick={() => { }}>
+                <Button variant="outlined" color="primary" onClick={handleBack}>
                     {description.CONFIG.BUTTONS.STEPS.STEP_PREV}
                 </Button>
             </Tooltip>
 
-            {/* <Button variant="contained" color="primary" type="submit">
-                {description.CONFIG.BUTTONS.STEPS.SEND}
-            </Button> */}
-
-            <Tooltip title={description.CONFIG.BUTTONS.STEPS.STEP_NEXT}>
-                <Button variant="outlined" color="primary" onClick={() => { }}>
-                    {description.CONFIG.BUTTONS.STEPS.STEP_NEXT}
-                </Button>
-            </Tooltip>
+            {
+                // state.activeStep === 3 ?
+                //     <Button variant="contained" color="primary" type="submit">
+                //         {description.CONFIG.BUTTONS.STEPS.SEND}
+                //     </Button> 
+                //     :
+                
+                    <Tooltip title={description.CONFIG.BUTTONS.STEPS.STEP_NEXT}>
+                        <Button variant="outlined" color="primary" onClick={handleNext}>
+                            {description.CONFIG.BUTTONS.STEPS.STEP_NEXT}
+                        </Button>
+                    </Tooltip>
+            }
         </Box >
     )
 })
