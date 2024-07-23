@@ -28,7 +28,7 @@ const Steps = () => {
         <Div>
             {
                 state.activeStep === steps.length ? <></> /* Fazer a etapa concluido */ :
-                <Paper elevation={1} sx={{ padding: 2 }}>
+                <Paper elevation={1} sx={{ padding: 2}}>
                     <Div>
                         {
                             !state.conclusion &&
@@ -37,7 +37,7 @@ const Steps = () => {
                         {getStepContent(state.activeStep)}
                         {
                             !state.conclusion &&
-                            <ButtonNextPrev />
+                            <ButtonNextPrev sizeButton="small" />
                         }
                     </Div>
                 </Paper>

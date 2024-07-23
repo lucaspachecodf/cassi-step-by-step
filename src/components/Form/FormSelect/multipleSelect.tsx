@@ -1,12 +1,12 @@
-import MuiSelect, { SelectChangeEvent } from '@mui/material/Select';
-import React, { ForwardedRef, forwardRef } from "react";
-import { OptionsModel } from "domain/models";
+import MuiSelect from '@mui/material/Select';
+import { ForwardedRef, forwardRef } from "react";
 import { Checkbox, ListItemText, MenuItem, SelectProps as MuiSelectProps } from '@mui/material';
+import { IOptions } from 'domain/contract/base/iOptions';
 
 type Props = {
-    options: OptionsModel[],
+    options: IOptions[],
     multipleCheckBox?: boolean,
-    value: OptionsModel[]
+    value: IOptions[]
 }
 
 export type SelectProps = Props & MuiSelectProps
@@ -20,37 +20,25 @@ const MultipleSelect = forwardRef<HTMLSelectElement, SelectProps>((props, ref: F
         multiple,
         multipleCheckBox,
         value,
+        onChange,
         ...rest
     } = props
-
-    const [selectedValue, setSelectedValue] = React.useState<string[]>([]);
-
-    const handleChange = (event: SelectChangeEvent<any>) => {
-        const {
-            target: { value },
-        } = event;
-
-        setSelectedValue(
-            typeof value === 'string'
-                ? value.split(',')
-                : value
-        );
-    };
 
     return (
         <MuiSelect
             ref={ref}
             id={name}
             label={label}
-            value={selectedValue}
+            value={value}
             multiple={multiple}
             {...rest}
-            onChange={handleChange}>
+            onChange={onChange}
+        >
             {
                 multipleCheckBox &&
-                options.map((item: OptionsModel) => (
+                options.map((item: IOptions) => (
                     <MenuItem key={item.value} value={item.description}>
-                        <Checkbox checked={(selectedValue as string[]).includes(item.description)} />
+                        <Checkbox checked={(value as any[]).includes(item.description)} />
                         <ListItemText primary={item.description} />
                     </MenuItem>
                 ))

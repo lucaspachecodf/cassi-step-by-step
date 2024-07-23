@@ -17,12 +17,12 @@ const AddressDataStep = () => {
     const { formState, control, setValue, getValues } = useFormContext<AccreditStepsModel>();
     const { errors } = formState
     const { fillZipCodeData } = useZipCode()
-    const [optionsFederativeUnits, setOptionsFederativeUnits] = useState<OptionsModel[]>([])
+    const [optionsFederativeUnits] = useState<OptionsModel[]>(FEDERATIVE_UNITS_OPTIONS as OptionsModel[])
     const snackBar = useSnackBar()
 
-    useEffect(() => {
-        setOptionsFederativeUnits(FEDERATIVE_UNITS_OPTIONS as OptionsModel[])
-    }, [])
+    useEffect(() => {   
+        console.log(getValues("providerDataStep.providerData.specialty"));
+    }, []);
 
     const handleZipCode = async (zipCode: string) => {
         await fillZipCodeData(zipCode).then((data) => {

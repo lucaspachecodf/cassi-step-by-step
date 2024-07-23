@@ -44,7 +44,12 @@ const FormSelect = <T extends FieldValues>(props: ControllerProps<T> & SelectPro
                                     options={options}
                                     multiple={multiple}
                                     multipleCheckBox={multipleCheckBox}
-                                    renderValue={(selected: any) => selected.join(', ')}
+                                    renderValue={(selected) => (
+                                        (selected as string[]).map((value) => {
+                                            const option = options.find(option => option.value.toString() === value);
+                                            return option ? option.description : null;
+                                        }).filter(Boolean).join(', ')
+                                    )}
                                     MenuProps={{
                                         PaperProps: {
                                             style: {

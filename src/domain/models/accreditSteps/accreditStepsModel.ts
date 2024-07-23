@@ -1,14 +1,28 @@
 import { IAccreditSteps } from 'domain/contract/accreditSteps/iAccreditSteps';
-import { ProviderDataStepModel } from './ProviderDataStep/providerDataStepModel';
+import { IProviderDataStepModel } from './ProviderDataStep/providerDataStepModel';
 import { AddressDataStepModel } from './AddressDataStep/addressDataStepModel';
 
-export class AccreditStepsModel implements IAccreditSteps  {
-    
-    readonly providerDataStep: ProviderDataStepModel
-    readonly addressDataStep: AddressDataStepModel
+export interface ProviderData {
+    name: string;
+    document: string;
+    providerType: string;
+    specialty: string[];
+    providerDocumentType: number;
+  }
 
-    constructor() {
-        this.providerDataStep = new ProviderDataStepModel()
-        this.addressDataStep = new AddressDataStepModel()
-    }
-}
+  export interface AccreditStepsModel {
+    providerDataStep: {
+      providerData: ProviderData;
+    };
+  }
+
+// export class AccreditStepsModel implements IAccreditSteps  {    
+
+//     readonly providerDataStep: ProviderDataStepModel
+//     readonly addressDataStep: AddressDataStepModel
+
+//     constructor() {
+//         this.providerDataStep = new ProviderDataStepModel()
+//         this.addressDataStep = new AddressDataStepModel()
+//     }
+// }

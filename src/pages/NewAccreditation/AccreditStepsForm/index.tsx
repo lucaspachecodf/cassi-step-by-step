@@ -4,6 +4,8 @@ import { AccreditStepsModel } from "domain/models/accreditSteps/accreditStepsMod
 import Steps from "./Steps";
 import { useAccreditStepsContext } from "contexts";
 import useAccredit from "hooks/accredit/useAccredit";
+import { yupResolver } from "@hookform/resolvers/yup"
+import AccreditStepsFormSchema from "./Steps/ValidationSchema";
 
 const StepsAccreditForm = () => {
 
@@ -13,7 +15,20 @@ const StepsAccreditForm = () => {
     const methods = useForm<AccreditStepsModel>({
         shouldUnregister: false,
         mode: 'onChange',
-        defaultValues: new AccreditStepsModel()        
+        defaultValues: {
+            providerDataStep: {
+              providerData: {
+                name: '',
+                document: '',
+                providerType: '',
+                specialty: [],
+                providerDocumentType: '1',
+              },
+            },
+          },
+          resolver: yupResolver(AccreditStepsFormSchema[state.activeStep])
+        //defaultValues: new AccreditStepsModel(),
+        //resolver: yupResolver(AccreditStepsFormSchema[state.activeStep])
     });
     const { handleSubmit } = methods
 
@@ -22,7 +37,7 @@ const StepsAccreditForm = () => {
         handleSave(data).then((result) => {
             dispatchStep({
                 type: 'onUpdate',
-                payload: { ...state, conclusion: true,  accreditedResponse: result }
+                payload: { ...state, conclusion: true, accreditedResponse: result }
             })
         }).catch((e) => {
             console.log(e)

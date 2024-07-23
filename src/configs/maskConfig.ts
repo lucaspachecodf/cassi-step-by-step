@@ -14,14 +14,6 @@ export const cnpjMask: MaskProps = {
     mask: ['99.999.999/9999-99']
 }
 
-export const mergedDocumentMask: MaskProps = {
-    mask: [...cpfMask.mask, ...cnpjMask.mask]
-}
-
-export const dateMask: MaskProps = {
-    mask: ['99/99/9999']
-}
-
 export const zipCodeMask: MaskProps = {
     mask: ['99999-999']
 }

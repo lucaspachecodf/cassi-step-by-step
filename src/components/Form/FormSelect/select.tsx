@@ -1,11 +1,10 @@
 import MuiSelect from '@mui/material/Select';
 import { ForwardedRef, forwardRef } from "react";
-import { OptionsModel } from "domain/models";
 import { MenuItem, SelectProps as MuiSelectProps } from '@mui/material';
+import { IOptions } from 'domain/contract/base/iOptions';
 
 type Props = {
-    options: OptionsModel[],
-    multipleCheckBox?: boolean
+    options: IOptions[]    
 }
 
 export type SelectProps = Props & MuiSelectProps
@@ -15,9 +14,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>((props, ref: Forwarded
     const {
         name,
         label,
-        options,
-        multiple,
-        multipleCheckBox,
+        options,        
         ...rest
     } = props
 

@@ -14,7 +14,7 @@ type Props = {
 const ButtonNextPrev = forwardRef<HTMLButtonElement, Props>((props, ref: ForwardedRef<HTMLButtonElement>) => {
 
     const styles = useStyles()
-    const { steps, handleBack, handleNext } = useAccreditSteps()
+    const { handleBack, handleNext } = useAccreditSteps()
     const { state } = useAccreditStepsContext()
 
     const {
@@ -28,7 +28,7 @@ const ButtonNextPrev = forwardRef<HTMLButtonElement, Props>((props, ref: Forward
             {
                 state.activeStep !== EAccreditSteps.ProviderData &&
                 <Tooltip title={description.CONFIG.BUTTONS.STEPS.STEP_NEXT}>
-                    <Button variant="outlined" color="primary" onClick={handleBack}>
+                    <Button size={sizeButton} variant="outlined" color="primary" onClick={handleBack}>
                         {description.CONFIG.BUTTONS.STEPS.STEP_PREV}
                     </Button>
                 </Tooltip>

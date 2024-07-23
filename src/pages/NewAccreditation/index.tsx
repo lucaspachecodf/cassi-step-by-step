@@ -29,7 +29,7 @@ const NewAccreditation = () => {
           <AccreditStepsForm />
         </Grid>
       </GridContainer>
-    </AccreditStepsProvider>
+    </AccreditStepsProvider >
   );
 };
 

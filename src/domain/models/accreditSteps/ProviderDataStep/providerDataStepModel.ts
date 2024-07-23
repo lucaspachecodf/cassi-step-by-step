@@ -1,9 +1,15 @@
-import { ProviderDataModel } from "./providerDataModel";
+import { IProviderDataModel } from "./providerDataModel";
 
-export class ProviderDataStepModel {
-  providerData: ProviderDataModel;
-
-  constructor() {
-    this.providerData = new ProviderDataModel("", "", 0, 0);
-  }
+export interface IProviderDataStepModel {
+  providerDataStep: {
+    providerData: IProviderDataModel;
+  };
 }
+
+// export class ProviderDataStepModel {
+//   providerData: ProviderDataModel;
+
+//   constructor() {
+//     this.providerData = new ProviderDataModel('', '', '', [], '1');
+//   }
+// }
