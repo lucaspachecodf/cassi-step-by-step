@@ -13,7 +13,6 @@ import FormSelect from "components/Form/FormSelect";
 import { PROVIDER_TYPE_OPTIONS } from "options/providerTypeOptions";
 import { SPECIALTY_OPTIONS } from "options/specialtyOptions";
 
-
 const ProviderDataStep = () => {
 
     const { formState, control, setValue, getValues } = useFormContext<AccreditStepsModel>();

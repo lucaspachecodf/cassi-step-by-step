@@ -16,7 +16,7 @@ const useAccreditSteps = () => {
             dispatchStep({
                 type: 'onNextStep',
                 payload: {
-                    ...state,
+                    ...state                    
                 }
             })            
         }
@@ -26,7 +26,7 @@ const useAccreditSteps = () => {
         dispatchStep({
             type: 'onPrevStep',
             payload: {
-                ...state,
+                ...state                
             }
         })
     };

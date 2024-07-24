@@ -1,5 +1,15 @@
 import IZipCodeResponseDto from "domain/dtos/response/zipCode/iZipCodeResponseDto";
 
+export interface IAddressModel {
+  zipCode: string;
+  address: string;
+  state: string;
+  city: string;
+  district: string;
+  number: string;
+  complement?: string | undefined;
+}
+
 export class AddressModel {
   constructor(
     readonly zipCode: string,
@@ -7,13 +17,13 @@ export class AddressModel {
     readonly state: string,
     readonly city: string,
     readonly district: string,
-    readonly number: number,
-    readonly addressReference: string
+    readonly number: string,
+    readonly complement?: string | undefined
   ) {}
 
   static mapperDtoToModel(
     zipCodeResponse: IZipCodeResponseDto,
-    number: number
+    number: string
   ) {
     return new AddressModel(
       zipCodeResponse.cep,

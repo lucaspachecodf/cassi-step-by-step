@@ -11,10 +11,11 @@ const actions: IAccreditStepsActionReducer = {
             activeStep: state.activeStep + 1
         }
     },
-    onPrevStep(state: IAccreditStepsInitialState): IAccreditStepsInitialState {
+    onPrevStep(state: IAccreditStepsInitialState): IAccreditStepsInitialState {        
         return {
             ...state,
-            activeStep: state.activeStep - 1
+            activeStep: state.activeStep - 1,
+            confirmation: false
         }
     },
 

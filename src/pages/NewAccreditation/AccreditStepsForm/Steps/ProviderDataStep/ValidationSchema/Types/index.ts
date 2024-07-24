@@ -1,15 +1,11 @@
-export type ProviderDataSchemaModel = {  
-  name: string;
-  document: string;
-  providerType: string,
-  specialty: string[],
-  providerDocumentType: number
-};
+import { IProviderDataModel } from "domain/models/accreditSteps/ProviderDataStep/providerDataModel";
+
+export interface ProviderDataSchemaModel extends IProviderDataModel {}
 
 export type AccreditProviderDataStepsSchemaModel = {
-    providerData: ProviderDataSchemaModel
-}
+  providerData: ProviderDataSchemaModel;
+};
 
 export type ProviderDataStepsSchemaModel = {
-    providerDataStep: AccreditProviderDataStepsSchemaModel
+  providerDataStep: AccreditProviderDataStepsSchemaModel;
 };

@@ -7,6 +7,9 @@ import ButtonNextPrev from "../ButtonNextPrev";
 import ProviderDataStep from "./ProviderDataStep";
 import useAccreditSteps from "hooks/accredit/useSteps";
 import { useAccreditStepsContext } from "contexts";
+import ContactDataStep from "./ContactData";
+import ConfirmationDataStep from "./confirmationDataStep";
+import AttachmentDataStep from "./AttachmentDataStep";
 
 const Steps = () => {
 
@@ -19,6 +22,13 @@ const Steps = () => {
                 return <ProviderDataStep />
             case EAccreditSteps.AddressData:
                 return <AddressDataStep />
+            case EAccreditSteps.ContactData:
+                return <ContactDataStep />
+            case EAccreditSteps.ConfirmationData:
+                return <ConfirmationDataStep />
+            case EAccreditSteps.AttachmentData:
+                return <AttachmentDataStep />
+
             default:
                 return "passo desconhecido";
         }
@@ -27,20 +37,22 @@ const Steps = () => {
     return (
         <Div>
             {
-                state.activeStep === steps.length ? <></> /* Fazer a etapa concluido */ :
-                <Paper elevation={1} sx={{ padding: 2}}>
-                    <Div>
-                        {
-                            !state.conclusion &&
-                            <StepIndicator />
-                        }
-                        {getStepContent(state.activeStep)}
-                        {
-                            !state.conclusion &&
-                            <ButtonNextPrev sizeButton="small" />
-                        }
-                    </Div>
-                </Paper>
+                state.activeStep === steps.length ? <></> /* TODO: Fazer a etapa concluido */ :
+                    <Paper elevation={1} sx={{ padding: 2 }}>
+                        <Div>
+                            {
+                                !state.conclusion &&
+                                <StepIndicator />
+                            }
+                            <Div sx={{ height: '50vh' }}>
+                                {getStepContent(state.activeStep)}
+                            </Div>
+                            {
+                                !state.conclusion &&
+                                <ButtonNextPrev sizeButton="small" />
+                            }
+                        </Div>
+                    </Paper>
             }
         </Div>
     )

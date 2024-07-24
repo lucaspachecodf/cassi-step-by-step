@@ -24,28 +24,31 @@ const ButtonNextPrev = forwardRef<HTMLButtonElement, Props>((props, ref: Forward
 
     return (
         <Box {...rest} sx={styles.container} ref={ref}>
-
-            {
-                state.activeStep !== EAccreditSteps.ProviderData &&
-                <Tooltip title={description.CONFIG.BUTTONS.STEPS.STEP_NEXT}>
-                    <Button size={sizeButton} variant="outlined" color="primary" onClick={handleBack}>
-                        {description.CONFIG.BUTTONS.STEPS.STEP_PREV}
+            <>
+                {
+                    state.activeStep !== EAccreditSteps.ProviderData &&
+                    <Tooltip title={description.CONFIG.BUTTONS.STEPS.STEP_NEXT}>
+                        <Button size={sizeButton} variant="outlined" color="primary" onClick={handleBack}>
+                            {description.CONFIG.BUTTONS.STEPS.STEP_PREV}
+                        </Button>
+                    </Tooltip>
+                }
+                {
+                    state.activeStep === EAccreditSteps.ConfirmationData && state.confirmation &&
+                    <Button variant="contained" color="primary" onClick={handleNext}>
+                        {description.CONFIG.BUTTONS.STEPS.SEND}
                     </Button>
-                </Tooltip>
-            }
-            {
-                // state.activeStep === EAccreditSteps.ConfirmationData ?
-                //     <Button variant="contained" color="primary" type="submit">
-                //         {description.CONFIG.BUTTONS.STEPS.SEND}
-                //     </Button> 
-                //     :
+                }
 
-                <Tooltip title={description.CONFIG.BUTTONS.STEPS.STEP_NEXT}>
-                    <Button size={sizeButton} variant="outlined" color="primary" onClick={handleNext}>
-                        {description.CONFIG.BUTTONS.STEPS.STEP_NEXT}
-                    </Button>
-                </Tooltip>
-            }
+                {
+                    state.activeStep !== EAccreditSteps.ConfirmationData &&
+                    <Tooltip title={description.CONFIG.BUTTONS.STEPS.STEP_NEXT}>
+                        <Button size={sizeButton} variant="outlined" color="primary" onClick={handleNext}>
+                            {description.CONFIG.BUTTONS.STEPS.STEP_NEXT}
+                        </Button>
+                    </Tooltip>
+                }
+            </>
         </Box >
     )
 })

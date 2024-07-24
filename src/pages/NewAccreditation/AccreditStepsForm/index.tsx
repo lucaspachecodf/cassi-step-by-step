@@ -15,20 +15,8 @@ const StepsAccreditForm = () => {
     const methods = useForm<AccreditStepsModel>({
         shouldUnregister: false,
         mode: 'onChange',
-        defaultValues: {
-            providerDataStep: {
-              providerData: {
-                name: '',
-                document: '',
-                providerType: '',
-                specialty: [],
-                providerDocumentType: '1',
-              },
-            },
-          },
-          resolver: yupResolver(AccreditStepsFormSchema[state.activeStep])
-        //defaultValues: new AccreditStepsModel(),
-        //resolver: yupResolver(AccreditStepsFormSchema[state.activeStep])
+        defaultValues: new AccreditStepsModel(),
+        resolver: yupResolver(AccreditStepsFormSchema[state.activeStep])
     });
     const { handleSubmit } = methods
 

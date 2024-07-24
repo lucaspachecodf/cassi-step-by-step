@@ -2,8 +2,11 @@ type MaskProps = {
     mask: string[]
 }
 
+export const cellphoneMask: MaskProps = {
+    mask: ['(99) 99999-9999']
+}
 export const phoneMask: MaskProps = {
-    mask: ['(99) 9999-9999', '(99) 99999-9999']
+    mask: ['(99) 9999-9999']
 }
 
 export const cpfMask: MaskProps = {

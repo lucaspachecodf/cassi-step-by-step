@@ -1,2 +1,2 @@
-export * from 'domain/models/addressModel'
+export * from 'domain/models/accreditSteps/AddressDataStep/addressModel'
 export * from './optionsModel'

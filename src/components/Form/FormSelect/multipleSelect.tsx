@@ -41,6 +41,7 @@ const MultipleSelect = forwardRef<HTMLSelectElement, SelectProps>((props, ref: F
                         <Checkbox checked={(value as any[]).includes(item.description)} />
                         <ListItemText primary={item.description} />
                     </MenuItem>
+
                 ))
             }
         </MuiSelect>

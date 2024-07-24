@@ -3,5 +3,5 @@ import { ProviderDataStepModel } from "domain/models/accreditSteps/ProviderDataS
 
 export interface IAccreditSteps {
     providerDataStep: ProviderDataStepModel
-    addressDataStep: AddressDataStepModel    
+    addressDataStep: AddressDataStepModel  
 }

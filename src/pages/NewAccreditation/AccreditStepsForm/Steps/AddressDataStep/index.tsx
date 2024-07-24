@@ -21,7 +21,7 @@ const AddressDataStep = () => {
     const snackBar = useSnackBar()
 
     useEffect(() => {   
-        console.log(getValues("providerDataStep.providerData.specialty"));
+        console.log('teste', getValues("providerDataStep.providerData.specialty"));
     }, []);
 
     const handleZipCode = async (zipCode: string) => {
@@ -31,7 +31,7 @@ const AddressDataStep = () => {
                 setValue('addressDataStep.addressData.address.district', data.district)
                 setValue('addressDataStep.addressData.address.city', data.city)
                 setValue('addressDataStep.addressData.address.state', data.state)
-                setValue('addressDataStep.addressData.address.addressReference', data.addressReference)
+                setValue('addressDataStep.addressData.address.complement', data.complement)
             }
         }).catch((error: Error) => {
             snackBar.show(error?.message, 'error')
@@ -93,11 +93,11 @@ const AddressDataStep = () => {
                 </Grid>
 
                 <Grid item xs={12}>
-                    <FormTextField required
-                        name="addressDataStep.addressData.address.addressReference"
-                        fieldError={errors.addressDataStep?.addressData?.address?.addressReference}
+                    <FormTextField
+                        name="addressDataStep.addressData.address.complement"
+                        fieldError={errors.addressDataStep?.addressData?.address?.complement}
                         control={control}
-                        label="Referência do endereço" />
+                        label="Complemento" />
                 </Grid>
             </GridContainer>
         </>

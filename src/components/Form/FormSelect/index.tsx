@@ -34,52 +34,61 @@ const FormSelect = <T extends FieldValues>(props: ControllerProps<T> & SelectPro
             <Controller
                 control={control}
                 name={name}
-                render={({ field }) => (
-                    <>
-                        {
-                            multipleCheckBox || multiple ?
-                                <MultipleSelect
-                                    {...field}
-                                    label={label}
-                                    options={options}
-                                    multiple={multiple}
-                                    multipleCheckBox={multipleCheckBox}
-                                    renderValue={(selected) => (
-                                        (selected as string[]).map((value) => {
-                                            const option = options.find(option => option.value.toString() === value);
-                                            return option ? option.description : null;
-                                        }).filter(Boolean).join(', ')
-                                    )}
-                                    MenuProps={{
-                                        PaperProps: {
-                                            style: {
-                                                maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-                                                width: 250,
+                render={({ field }) => {
+
+                    const valueArray = Array.isArray(field.value) ? field.value : [];
+
+                    return (
+                        <>
+
+                            {
+                                multipleCheckBox || multiple ?
+                                    <MultipleSelect
+                                        {...field}
+                                        label={label}
+                                        options={options}
+                                        multiple={multiple}
+                                        multipleCheckBox={multipleCheckBox}
+                                        value={valueArray}
+                                        renderValue={(selected) => (                                            
+                                            (selected as string[]).map((value) => {                                                
+                                                const option = options.find(option => option.description.toString() === value);
+                                                return option ? option.description : null;
+                                            }).filter(Boolean).join(', ')
+                                        )}
+                                        MenuProps={{
+                                            PaperProps: {
+                                                style: {
+                                                    maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+                                                    width: 250,
+                                                },
                                             },
-                                        },
-                                    }}
+                                        }}
 
-                                    onChange={(e, value) => {
-                                        field.onChange(e)
-                                        handleChange && handleChange()
-                                    }} />
-                                :
-                                <Select
-                                    {...field}
-                                    label={label}
-                                    options={options}
-                                    onChange={(e, value) => {
-                                        field.onChange(e)
-                                        handleChange && handleChange()
-                                    }} />
-                        }
+                                        onChange={(e, value) => {
+                                            field.onChange(e)
+                                            handleChange && handleChange()
+                                        }} />
+                                    :
+                                    <Select
+                                        {...field}
+                                        label={label}
+                                        options={options}
+                                        
+                                        onChange={(e, value) => {
+                                            field.onChange(e)
+                                            handleChange && handleChange()
+                                        }} />
+                            }
 
-                        <FormHelperText error variant="outlined">
-                            {fieldError?.message}
-                        </FormHelperText>
+                            <FormHelperText error variant="outlined">
+                                {fieldError?.message}
+                            </FormHelperText>
 
-                    </>
-                )}
+                        </>
+                    );
+                }}
+
             />
         </FormControl>
     )
