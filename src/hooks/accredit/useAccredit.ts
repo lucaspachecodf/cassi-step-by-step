@@ -13,7 +13,7 @@ const useAccredit = () => {
 
     const handleSave = (accreditStepsModel: AccreditStepsModel): Promise<IAccreditedResponseDto> => {
         return new Promise(async (resolve, reject) => {
-            spinner.show('Aguarde, estamos fazendo o seu credenciamento')
+            //spinner.show('Aguarde, estamos fazendo o seu credenciamento')
             await accreditService.save(accreditStepsModel).then((result) => {                
                 resolve(result)
             }).catch((error: AxiosError<IResultWithListDto<ITypeResponseDto>>) => {

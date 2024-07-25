@@ -1,12 +1,16 @@
 import { Typography } from "@mui/material"
 import { ComponentProps, FC } from "react"
 
-export type TitleProps = ComponentProps<typeof Typography>
+export type TitleProps = {
+    bold?: boolean
+} & ComponentProps<typeof Typography>
 
 const Title: FC<TitleProps> = (props) => {
-    const { children, } = props
+    const { children, bold, sx, ...rest } = props
     return (
-        <Typography color='primary' variant="h2" {...props}>
+        <Typography sx={{fontWeight: bold ? 700 : 0, ...sx}} 
+        color='primary' 
+        variant="h2" {...rest}>
             {children}
         </Typography>
     )

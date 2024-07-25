@@ -20,15 +20,24 @@ const StepsAccreditForm = () => {
     });
     const { handleSubmit } = methods
 
-    const onSubmit = (data: AccreditStepsModel) => {
+    const onSubmit = async (data: AccreditStepsModel) => {
         console.log(data)
+
+         dispatchStep({
+             type: 'onUpdate',
+             payload: { ...state, isBusy: true }
+         })
+
         handleSave(data).then((result) => {
             dispatchStep({
                 type: 'onUpdate',
-                payload: { ...state, conclusion: true, accreditedResponse: result }
+                payload: { ...state, isBusy: false, conclusion: true, accreditedResponse: result }
             })
-        }).catch((e) => {
-            console.log(e)
+        }).catch(async (e) => {
+            console.log('error', e)
+            dispatchStep({
+                type: 'onPrevStep'
+            })
         })
     }
 

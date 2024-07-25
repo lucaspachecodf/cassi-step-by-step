@@ -28,7 +28,7 @@ const actions: IAccreditStepsActionReducer = {
     onComplete(state: IAccreditStepsInitialState): IAccreditStepsInitialState {
         return {
             ...state,
-            isAnimationStopped: true,
+            isBusy: true,
             conclusion: true
         }
     },    

@@ -5,6 +5,6 @@ export class AttachmentDataStepModel {
   attachmentData: AttachmentDataModel;
 
   constructor() {
-    this.attachmentData = new AttachmentDataModel([]);
+    this.attachmentData = new AttachmentDataModel([], '');
   }
 }

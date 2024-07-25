@@ -4,7 +4,7 @@ import IAccreditedResponseDto from "domain/dtos/response/accredited/iAccreditedR
 export const AccreditStepsInitialState: IAccreditStepsInitialState = {
     activeStep: 0,    
     confirmation: false,    
-    isAnimationStopped: false,
+    isBusy: false,
     conclusion: false,
     accreditedResponse: { id: 0, protocolNumber: '' } as IAccreditedResponseDto
 };

@@ -4,8 +4,9 @@ export interface IFileWithPreview extends File {
 
 export interface IAttachmentDataModel {
   files: IFileWithPreview[];
+  observation?: string
 }
 
 export class AttachmentDataModel implements IAttachmentDataModel {
-  constructor(readonly files: IFileWithPreview[]) {}
+  constructor(readonly files: IFileWithPreview[], readonly observation?: string) {}
 }

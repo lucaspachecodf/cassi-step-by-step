@@ -8,8 +8,9 @@ import ProviderDataStep from "./ProviderDataStep";
 import useAccreditSteps from "hooks/accredit/useSteps";
 import { useAccreditStepsContext } from "contexts";
 import ContactDataStep from "./ContactData";
-import ConfirmationDataStep from "./confirmationDataStep";
+import ConfirmationDataStep from "./ConfirmationDataStep";
 import AttachmentDataStep from "./AttachmentDataStep";
+import ConclusionDataStep from "./Conclusion";
 
 const Steps = () => {
 
@@ -17,6 +18,7 @@ const Steps = () => {
     const { state } = useAccreditStepsContext();
 
     const getStepContent = (step: number) => {
+        
         switch (step) {
             case EAccreditSteps.ProviderData:
                 return <ProviderDataStep />
@@ -27,8 +29,7 @@ const Steps = () => {
             case EAccreditSteps.ConfirmationData:
                 return <ConfirmationDataStep />
             case EAccreditSteps.AttachmentData:
-                return <AttachmentDataStep />
-
+                return <AttachmentDataStep />            
             default:
                 return "passo desconhecido";
         }
@@ -37,14 +38,14 @@ const Steps = () => {
     return (
         <Div>
             {
-                state.activeStep === steps.length ? <></> /* TODO: Fazer a etapa concluido */ :
+                state.isBusy || state.conclusion ? <ConclusionDataStep /> :
                     <Paper elevation={1} sx={{ padding: 2 }}>
                         <Div>
                             {
                                 !state.conclusion &&
                                 <StepIndicator />
                             }
-                            <Div sx={{ height: '50vh' }}>
+                            <Div sx={{ minHeight: '50vh' }}>
                                 {getStepContent(state.activeStep)}
                             </Div>
                             {

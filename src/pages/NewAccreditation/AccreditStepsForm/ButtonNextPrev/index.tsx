@@ -41,9 +41,19 @@ const ButtonNextPrev = forwardRef<HTMLButtonElement, Props>((props, ref: Forward
                 }
 
                 {
+                    state.activeStep !== EAccreditSteps.AttachmentData &&
                     state.activeStep !== EAccreditSteps.ConfirmationData &&
                     <Tooltip title={description.CONFIG.BUTTONS.STEPS.STEP_NEXT}>
                         <Button size={sizeButton} variant="outlined" color="primary" onClick={handleNext}>
+                            {description.CONFIG.BUTTONS.STEPS.STEP_NEXT}
+                        </Button>
+                    </Tooltip>
+                }
+
+                {
+                    state.activeStep === EAccreditSteps.AttachmentData &&
+                    <Tooltip title={description.CONFIG.BUTTONS.STEPS.STEP_NEXT}>
+                        <Button size={sizeButton} variant="outlined" color="primary" type='submit'>
                             {description.CONFIG.BUTTONS.STEPS.STEP_NEXT}
                         </Button>
                     </Tooltip>

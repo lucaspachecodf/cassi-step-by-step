@@ -1,11 +1,11 @@
 import { Typography, TypographyProps } from "@mui/material"
-import { FC } from "react"
+import { FC, forwardRef } from "react"
 
 type Props = {
     bold?: boolean
  } & TypographyProps
 
-const Label: FC<Props> = (props) => {
+ const Label = forwardRef<HTMLSpanElement, Props>((props, ref) => {
 
     const {
         bold,
@@ -14,10 +14,10 @@ const Label: FC<Props> = (props) => {
     } = props
 
     return (
-        <Typography sx={{fontWeight: bold ? 700 : 0}} {...rest}>
+        <Typography ref={ref} sx={{fontWeight: bold ? 700 : 0}} {...rest}>
             {children}
         </Typography>
     )
-}
+});
 
 export default Label

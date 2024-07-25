@@ -3,5 +3,6 @@ export enum EAccreditSteps {
   AddressData = 1,
   ContactData = 2,
   ConfirmationData = 3,
-  AttachmentData = 4
+  AttachmentData = 4,
+  Conclusion = 5
 }

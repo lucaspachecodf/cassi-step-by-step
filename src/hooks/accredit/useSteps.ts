@@ -5,7 +5,7 @@ import { useAccreditStepsContext } from 'contexts';
 
 const useAccreditSteps = () => {
     const { state, dispatchStep } = useAccreditStepsContext()    
-    const [steps] = useState<string[]>(['Dados', 'Endereço', 'Contato', 'Confirmação', 'Anexo'])
+    const [steps] = useState<string[]>(['Dados', 'Endereço', 'Contato', 'Confirmação', 'Anexos'])
 
     const { trigger } = useFormContext<AccreditStepsModel>()
     

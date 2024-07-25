@@ -1,4 +1,4 @@
-import React, { FC } from "react"
+import React, { forwardRef } from "react"
 import { Box, Stack, SxProps, Theme } from '@mui/material'
 import useStyles from './styles'
 
@@ -9,7 +9,7 @@ type Props = {
 
 type DivProps = React.ComponentProps<typeof Box> & Props;
 
-const Div: FC<DivProps> = (props) => {
+const Div = forwardRef<HTMLDivElement, DivProps>((props, ref) => {
 
     const styles = useStyles();
 
@@ -21,12 +21,13 @@ const Div: FC<DivProps> = (props) => {
     } = props
 
     return (
-        <Box sx={styles.div} {...rest}>
+        <Box sx={styles.div} ref={ref} {...rest}>
             <Stack spacing={spacing} sx={sxStack}>
                 {children}
             </Stack>
         </Box>
     )
-}
+    //}
+});
 
 export default Div

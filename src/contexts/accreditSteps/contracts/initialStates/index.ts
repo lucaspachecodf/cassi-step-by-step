@@ -4,6 +4,6 @@ export interface IAccreditStepsInitialState {
     activeStep: number     
     confirmation: boolean   
     conclusion: boolean        
-    isAnimationStopped: boolean
+    isBusy: boolean    
     accreditedResponse: IAccreditedResponseDto
 }

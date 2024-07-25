@@ -41,15 +41,22 @@ const ContactDataStep = () => {
                         mask={phoneMask.mask} />
                 </Grid>
 
-                {
-                    errors.contactDataStep?.contactData?.root?.message && (
-                        <Grid paddingLeft={2} xs={12}>
-                            <Label variant="caption">
-                                {errors.contactDataStep?.contactData?.root?.message}
-                            </Label>
-                        </Grid>
-                    )
-                }
+
+                <Grid item paddingLeft={2} xs={12}>
+                    <Label variant="caption">
+                        Obrigatório informar pelo menos um telefone
+                    </Label>
+                </Grid>
+                {/* {
+                    // errors.contactDataStep?.contactData?.root?.message && (
+                    //     <Grid paddingLeft={2} xs={12}>
+                    //         <Label variant="caption">
+                    //             {errors.contactDataStep?.contactData?.root?.message}
+                    //         </Label>
+                    //     </Grid>
+                    // )
+                    } */}
+
 
                 <Grid item xs={12}>
                     <FormTextField required
@@ -59,7 +66,7 @@ const ContactDataStep = () => {
                         label="Email" />
                 </Grid>
 
-            </GridContainer>
+            </GridContainer >
         </>
     )
 }

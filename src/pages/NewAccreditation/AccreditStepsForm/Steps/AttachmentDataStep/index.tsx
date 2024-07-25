@@ -1,29 +1,35 @@
-import { Box, Paper, TextField, Tooltip, Typography } from "@mui/material"
+import { Box, FormHelperText, Paper, Tooltip } from "@mui/material"
 import { useDropzone } from "react-dropzone";
 import { useEffect, useState } from "react";
 import { useFormContext } from "react-hook-form";
 import { AccreditStepsModel } from "domain/models/accreditSteps/accreditStepsModel";
 import { IFileWithPreview } from "domain/models/accreditSteps/AttachmentDataStep/attachmentDataModel";
+import Div from "components/Div";
+import Label from "components/Label";
+import FormTextField from "components/Form/FormTextField";
+import FAQDrawer from "components/FAQDrawer";
+
+const MAX_CHARACTERS = 600;
 
 const AttachmentDataStep = () => {
 
-    const [files, setFiles] = useState<IFileWithPreview[]>([]);
+    const { formState, control, setValue, getValues } = useFormContext<AccreditStepsModel>();
+    const { errors } = formState
 
     useEffect(() => {
-        debugger
         setFiles(getValues('attachmentDataStep.attachmentData.files'))
     }, [])
 
-    const [notes, setNotes] = useState<string>('');
-
-    const { setValue, getValues } = useFormContext<AccreditStepsModel>();
-
+    const [files, setFiles] = useState<IFileWithPreview[]>([]);
+    const [notes, setNotes] = useState<string>(getValues('attachmentDataStep.attachmentData.observation') ?? '');
+    
     const { getRootProps, getInputProps } = useDropzone({
         accept: 'image/*,application/pdf' as any,
         onDrop: (acceptedFiles) => {
             const filesWithPreview = acceptedFiles.map(file => Object.assign(file, {
                 preview: URL.createObjectURL(file)
             }));
+            
             setFiles((prevFiles) => [...prevFiles, ...filesWithPreview]);
             setValue('attachmentDataStep.attachmentData.files', [...files, ...filesWithPreview]);
         },
@@ -37,28 +43,35 @@ const AttachmentDataStep = () => {
     };
 
     const handleNotesChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setValue("attachmentDataStep.attachmentData.observation", event.target.value)
         setNotes(event.target.value);
     };
 
     return (
-        <Box sx={{ padding: 2 }}>
+        <Div spacing={4} sx={{ padding: 2 }}>
             <Paper sx={{ padding: 2 }}>
-                <Box
-                    {...getRootProps({ className: 'dropzone' })}
-                    sx={{
-                        border: '2px dashed gray',
-                        borderRadius: 2,
-                        padding: 2,
-                        textAlign: 'center',
-                        marginBottom: 2,
-                    }}
-                >
-                    <input {...getInputProps()} />
-                    <Typography variant="h6">Anexar arquivos</Typography>
-                    <Typography variant="body2" color="textSecondary">
-                        Arraste e solte arquivos aqui, ou clique para selecionar arquivos
-                    </Typography>
-                </Box>
+                <Div spacing={2} sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                    <FAQDrawer />
+                </Div>
+                {
+                    files.length < 12 &&
+                    <Div
+                        {...getRootProps({ className: 'dropzone' })}
+                        sx={{
+                            border: '2px dashed gray',
+                            borderRadius: 2,
+                            padding: 2,
+                            textAlign: 'center',
+                            marginBottom: 2,
+                        }}
+                    >
+                        <input {...getInputProps()} />
+                        <Label variant="h6">Anexar arquivos</Label>
+                        <Label variant="body2" color="textSecondary">
+                            Arraste e solte arquivos aqui, ou clique para selecionar arquivos
+                        </Label>
+                    </Div>
+                }
 
                 <Box sx={{ overflowX: 'auto', whiteSpace: 'nowrap' }}>
                     {files.map((file, index) => (
@@ -66,7 +79,10 @@ const AttachmentDataStep = () => {
                             key={index}
                             sx={{ display: 'inline-block', textAlign: 'center', position: 'relative', width: '150px' }}
                         >
-                            <Box sx={{ textAlign: 'center', position: 'relative' }}>
+                            <Box sx={{
+                                alignSelf: 'center',
+                                position: 'relative'
+                            }}>
                                 <Box
                                     component="img"
                                     src={file.preview}
@@ -74,38 +90,44 @@ const AttachmentDataStep = () => {
                                     sx={{ width: '100px', height: '100px', objectFit: 'cover', borderRadius: 1 }}
                                 />
                                 <Tooltip title='Remover'>
-                                    <Typography
+                                    <Label
                                         variant="body2"
                                         sx={{ marginTop: 1, cursor: 'pointer' }}
                                         onClick={() => removeFile(file)}>
                                         Remover anexo
-                                    </Typography>
+                                    </Label>
                                 </Tooltip>
                             </Box>
                         </Box>
                     ))}
                 </Box>
-                <Typography variant="body2" sx={{ textAlign: 'right', marginBottom: 2 }}>
+                <Label variant="body2" sx={{ textAlign: 'right', marginBottom: 2 }}>
                     {files.length}/12 arquivos anexados
-                </Typography>
+                </Label>
+                {
+                    errors.attachmentDataStep?.attachmentData?.files && <FormHelperText error>{errors.attachmentDataStep?.attachmentData?.files.message}</FormHelperText>
+                }
             </Paper>
 
             <Box>
-                <Typography variant="body2">Observações (Opcional)</Typography>
-                <TextField
+                <Label bold variant="body2">Observações (Opcional)</Label>
+                <FormTextField
+                    name="attachmentDataStep.attachmentData.observation"
+                    control={control}
                     fullWidth
                     multiline
+                    fieldError={errors.attachmentDataStep?.attachmentData?.observation}
                     rows={4}
+                    inputProps={{ maxLength: MAX_CHARACTERS }}
                     value={notes}
                     onChange={handleNotesChange}
                     variant="outlined"
-                    placeholder="Escreva suas observações aqui..."
-                />
-                <Typography variant="caption" color="textSecondary">
+                    placeholder="Sua mensagem..." />
+                <Label variant="caption" color="textSecondary">
                     {notes.length}/600 caracteres
-                </Typography>
+                </Label>
             </Box>
-        </Box>
+        </Div>
     )
 }
 
