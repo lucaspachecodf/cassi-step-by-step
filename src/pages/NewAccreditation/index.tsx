@@ -13,7 +13,7 @@ const NewAccreditation = () => {
   return (
     <AccreditStepsProvider>
       <GridContainer columnSpacing={0} item justifyContent="space-between" alignItems="center">
-        <Grid item xs={12} sm={5}>
+        <Grid item xs={12} sm={6}>
           <Div sx={{ height: '100vh' }}>
             <BreadcrumbsNavigation />
             <Image src={imageRegister} width={450} height={320} />
@@ -25,7 +25,7 @@ const NewAccreditation = () => {
             </Paragraph>
           </Div>
         </Grid>
-        <Grid item xs={12} sm={7}>
+        <Grid item xs={12} sm={6}>
           <Div sx={{ height: '100vh' }}>
             <AccreditStepsForm />
           </Div>
