@@ -40,8 +40,8 @@ const ConfirmationDataStep = () => {
                 Confirme que você é humano
             </Label>
             <ReCAPTCHA
-                //sitekey="6LfE_xYqAAAAABp6Mplq6LHBl36zn7WHat4uFHKB"
-                sitekey="6LfE"
+                sitekey="6LfE_xYqAAAAABp6Mplq6LHBl36zn7WHat4uFHKB"
+                //sitekey="6LfE"
                 onChange={onChangeConfirmation}
                 onErrored={handleRecaptchaError}
             />

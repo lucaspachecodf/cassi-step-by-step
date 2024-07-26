@@ -1,20 +1,25 @@
 import { Typography, TypographyProps } from "@mui/material"
-import { FC, forwardRef } from "react"
+import { forwardRef } from "react"
 
 type Props = {
     bold?: boolean
- } & TypographyProps
+    required?: boolean
+    error?: boolean
+} & TypographyProps
 
- const Label = forwardRef<HTMLSpanElement, Props>((props, ref) => {
+const Label = forwardRef<HTMLSpanElement, Props>((props, ref) => {
 
     const {
         bold,
+        required,
         children,
+        error,
         ...rest
     } = props
 
     return (
-        <Typography ref={ref} sx={{fontWeight: bold ? 700 : 0}} {...rest}>
+        <Typography ref={ref} sx={{ fontWeight: bold ? 700 : 0 }} {...rest}>
+            {required && <span style={{ color: error ? 'red' : '' }}> * </span>}
             {children}
         </Typography>
     )

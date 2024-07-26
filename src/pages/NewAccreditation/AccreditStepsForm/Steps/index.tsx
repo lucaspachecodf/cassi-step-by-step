@@ -5,16 +5,15 @@ import StepIndicator from "../StepIndicator";
 import Div from "components/Div";
 import ButtonNextPrev from "../ButtonNextPrev";
 import ProviderDataStep from "./ProviderDataStep";
-import useAccreditSteps from "hooks/accredit/useSteps";
 import { useAccreditStepsContext } from "contexts";
 import ContactDataStep from "./ContactData";
 import ConfirmationDataStep from "./ConfirmationDataStep";
 import AttachmentDataStep from "./AttachmentDataStep";
 import ConclusionDataStep from "./Conclusion";
+import { Palette } from "styles/theme";
 
 const Steps = () => {
 
-    const { steps } = useAccreditSteps();
     const { state } = useAccreditStepsContext();
 
     const getStepContent = (step: number) => {
@@ -39,7 +38,7 @@ const Steps = () => {
         <Div>
             {
                 state.isBusy || state.conclusion ? <ConclusionDataStep /> :
-                    <Paper elevation={1} sx={{ padding: 2 }}>
+                    <Paper elevation={1} sx={{ padding: 2, borderBottom: 8, borderColor: Palette.primary.main }}>
                         <Div>
                             {
                                 !state.conclusion &&

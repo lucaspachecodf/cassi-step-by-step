@@ -5,14 +5,18 @@ import Label from "components/Label";
 import { useAccreditStepsContext } from "contexts";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import useStyles from "./style";
+import { useFormContext } from "react-hook-form";
+import { AccreditStepsModel } from "domain/models/accreditSteps/accreditStepsModel";
 
 const ConclusionDataStep = () => {
 
     const { state, dispatchStep } = useAccreditStepsContext()
+    const { reset } = useFormContext<AccreditStepsModel>()
 
     const styles = useStyles()
 
     const onNewAccreditation = () => {
+        reset(new AccreditStepsModel())
         dispatchStep({ type: 'onReset' });
     }
 

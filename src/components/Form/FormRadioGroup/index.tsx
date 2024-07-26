@@ -2,10 +2,12 @@ import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, RadioGroup
 import { Controller, FieldValues } from "react-hook-form"
 import { IOptions } from "domain/contract/base/iOptions"
 import { IFormMultipleButtonGroupProps } from "domain/contract/form/iFormMultipleButtonGroupProps"
+import Label from "components/Label"
 
 type Props = {
-    required?: boolean;
-    size?: 'small' | 'medium';
+    required?: boolean
+    size?: 'small' | 'medium'
+    topLabel?: string
 }
 
 type ControllerProps<T extends FieldValues> = IFormMultipleButtonGroupProps<T> & RadioGroupProps & Props
@@ -20,6 +22,8 @@ const FormRadioGroup = <T extends FieldValues>(props: ControllerProps<T>) => {
         fieldError,
         required,
         size,
+        label,
+        topLabel,
         ...rest
     } = props
 
@@ -35,6 +39,16 @@ const FormRadioGroup = <T extends FieldValues>(props: ControllerProps<T>) => {
                 name={name}
                 render={({ field }) => (
                     <>
+                        {
+                            !label && topLabel &&
+                            <Label
+                                bold
+                                required={required}
+                                error={!!fieldError}
+                                variant="body2">
+                                {topLabel}
+                            </Label>
+                        }                        
                         <RadioGroup {...field} {...rest} row>
                             {options.map((option: IOptions) => {
                                 return <FormControlLabel

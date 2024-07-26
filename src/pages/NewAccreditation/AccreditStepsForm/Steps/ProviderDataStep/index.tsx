@@ -12,10 +12,11 @@ import { useEffect, useState } from "react";
 import FormSelect from "components/Form/FormSelect";
 import { PROVIDER_TYPE_OPTIONS } from "options/providerTypeOptions";
 import { SPECIALTY_OPTIONS } from "options/specialtyOptions";
+import Label from "components/Label";
 
 const ProviderDataStep = () => {
 
-    const { formState, control, setValue, getValues } = useFormContext<AccreditStepsModel>();
+    const { formState, control, setValue } = useFormContext<AccreditStepsModel>();
     const { errors } = formState
 
     const providerDocumentType = useWatch({
@@ -27,11 +28,7 @@ const ProviderDataStep = () => {
 
     const [documentMask, setDocumentMask] = useState<string[]>(cpfMask.mask);
 
-    useEffect(() => {   
-        console.log(getValues("providerDataStep.providerData.specialty"));
-    }, []);
-
-    useEffect(() => {        
+    useEffect(() => {
         setDocumentMask(providerDocumentTypeNumber === EDocumentType.CPF ? cpfMask.mask : cnpjMask.mask);
     }, [providerDocumentTypeNumber]);
 
@@ -53,22 +50,27 @@ const ProviderDataStep = () => {
                 </Grid>
 
                 <Grid item xs={6}>
-                    <FormTextField required
+
+                    <FormTextField
+                        required
+                        topLabel='Nome'
                         name="providerDataStep.providerData.name"
+                        placeholder="Informe o nome..."
                         fieldError={errors.providerDataStep?.providerData?.name}
-                        control={control}
-                        label="Nome" />
+                        control={control} />
                 </Grid>
 
                 <Grid item xs={6}>
-                    <FormTextFieldMask required
+                    <FormTextFieldMask 
+                        required
+                        topLabel={(providerDocumentTypeNumber === EDocumentType.CPF ? "CPF" : "CNPJ")}
                         name="providerDataStep.providerData.document"
                         fieldError={errors.providerDataStep?.providerData?.document}
                         control={control}
-                        setValue={setValue}                        
-                        mask={documentMask}
-                        label={(providerDocumentTypeNumber === EDocumentType.CPF ? "CPF" : "CNPJ")} 
-                        />
+                        placeholder={providerDocumentTypeNumber === EDocumentType.CPF ? '000.000.000-00': '00.000.000/0000-00'}
+                        setValue={setValue}
+                        mask={documentMask}                        
+                    />
                 </Grid>
 
                 <Grid item xs={12}>
@@ -77,8 +79,9 @@ const ProviderDataStep = () => {
                         control={control}
                         size='small'
                         name="providerDataStep.providerData.providerType"
+                        placeholder="Selecione o tipo"
                         fieldError={errors.providerDataStep?.providerData?.providerType}
-                        label="Tipo de prestador"                        
+                        topLabel="Tipo do prestador"
                         options={PROVIDER_TYPE_OPTIONS}
                     />
                 </Grid>
@@ -90,14 +93,14 @@ const ProviderDataStep = () => {
                         size='small'
                         name="providerDataStep.providerData.specialty"
                         fieldError={errors.providerDataStep?.providerData?.specialty as any}
-                        label="Especialidade"
+                        topLabel="Especialidade"
                         options={SPECIALTY_OPTIONS}
                         multiple
                         multipleCheckBox
                     />
                 </Grid>
 
-                
+
 
             </GridContainer>
         </>

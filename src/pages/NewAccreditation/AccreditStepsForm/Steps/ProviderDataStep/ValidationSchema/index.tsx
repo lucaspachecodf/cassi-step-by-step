@@ -13,7 +13,7 @@ const cnpjValidationSchema = yup.string()
     .test('is-cnpj-valid', 'CNPJ inválido', value => cnpj.isValid(value || ''));
 
 const providerDataSchema: yup.ObjectSchema<ProviderDataSchemaModel> = yup.object({
-    name: yup.string().required('Nome é obrigatório required'),    
+    name: yup.string().required('Nome é obrigatório'),    
     document: yup.string().required().when('providerDocumentType', (providerDocumentType: any, schema) => {        
         return providerDocumentType[0] === `${EDocumentType.CPF}` ? cpfValidationSchema : cnpjValidationSchema;
     }),

@@ -20,10 +20,6 @@ const AddressDataStep = () => {
     const [optionsFederativeUnits] = useState<OptionsModel[]>(FEDERATIVE_UNITS_OPTIONS as OptionsModel[])
     const snackBar = useSnackBar()
 
-    useEffect(() => {   
-        console.log('teste', getValues("providerDataStep.providerData.specialty"));
-    }, []);
-
     const handleZipCode = async (zipCode: string) => {
         await fillZipCodeData(zipCode).then((data) => {
             if (data) {
@@ -42,17 +38,20 @@ const AddressDataStep = () => {
         <>
             <GridContainer container>
                 <Grid item xs={4}>
-                    <FormTextFieldMask required
+                    <FormTextFieldMask
+                        required
+                        topLabel='Cep'
                         name="addressDataStep.addressData.address.zipCode"
                         fieldError={errors.addressDataStep?.addressData?.address?.zipCode}
-                        onBlur={() => handleZipCode(getValues('addressDataStep.addressData.address.zipCode'))} control={control} setValue={setValue} mask={zipCodeMask.mask} label="Cep" />
+                        onBlur={() => handleZipCode(getValues('addressDataStep.addressData.address.zipCode'))} control={control} setValue={setValue} mask={zipCodeMask.mask}
+                    />
                 </Grid>
                 <Grid item xs={8}>
                     <FormTextField required
                         name="addressDataStep.addressData.address.address"
                         fieldError={errors.addressDataStep?.addressData?.address?.address}
                         control={control}
-                        label="Endereço" />
+                        topLabel="Endereço" />
                 </Grid>
 
                 <Grid item xs={3}>
@@ -62,18 +61,18 @@ const AddressDataStep = () => {
                         size='small'
                         name="addressDataStep.addressData.address.state"
                         fieldError={errors.addressDataStep?.addressData?.address?.state}
-                        label="UF"
+                        topLabel="UF"
                         options={optionsFederativeUnits}
                     />
                 </Grid>
 
-                <Grid item xs={9}>
+                <Grid item xs={9} marginTop={1}>
                     <FormTextField
                         required
                         name="addressDataStep.addressData.address.city"
                         fieldError={errors.addressDataStep?.addressData?.address?.city}
                         control={control}
-                        label="Cidade" />
+                        topLabel="Cidade" />
                 </Grid>
 
                 <Grid item xs={6}>
@@ -81,7 +80,7 @@ const AddressDataStep = () => {
                         name="addressDataStep.addressData.address.district"
                         fieldError={errors.addressDataStep?.addressData?.address?.district}
                         control={control}
-                        label="Bairro" />
+                        topLabel="Bairro" />
                 </Grid>
 
                 <Grid item xs={6}>
@@ -89,7 +88,7 @@ const AddressDataStep = () => {
                         name="addressDataStep.addressData.address.number"
                         fieldError={errors.addressDataStep?.addressData?.address?.number}
                         control={control}
-                        label="Número" />
+                        topLabel="Número" />
                 </Grid>
 
                 <Grid item xs={12}>
@@ -97,7 +96,7 @@ const AddressDataStep = () => {
                         name="addressDataStep.addressData.address.complement"
                         fieldError={errors.addressDataStep?.addressData?.address?.complement}
                         control={control}
-                        label="Complemento" />
+                        topLabel="Complemento" />
                 </Grid>
             </GridContainer>
         </>

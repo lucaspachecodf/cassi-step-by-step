@@ -12,12 +12,15 @@ const useStyles = () => {
     width: "100%",
     paddingLeft: "80px",
     backgroundColor: Palette.primary.main,
-    display: "flex",
-    flexDirection: "column",    
-    position: 'relative'
+    display: "flex",    
+    position: 'relative'    
   };
 
-  return { footer };
+  const buttonSocial: SxProps = {
+    color: 'white'
+  }
+
+  return { footer, buttonSocial };
 };
 
 export default useStyles;

@@ -4,7 +4,7 @@ import { MenuItem, SelectProps as MuiSelectProps } from '@mui/material';
 import { IOptions } from 'domain/contract/base/iOptions';
 
 type Props = {
-    options: IOptions[]    
+    options: IOptions[]
 }
 
 export type SelectProps = Props & MuiSelectProps
@@ -22,8 +22,8 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>((props, ref: Forwarded
         <MuiSelect
             ref={ref}
             id={name}
-            label={label}
-            {...rest}>
+            label={label}            
+            {...rest}>            
             {
                 options?.map((item, index) => {
                     return <MenuItem key={item.value} value={item.value}>{item.description}</MenuItem>

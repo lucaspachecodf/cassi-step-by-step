@@ -7,15 +7,16 @@ type TextInputProps = InputProps & TextFieldProps;
 const TextField = forwardRef<HTMLDivElement, TextInputProps>((props, ref: ForwardedRef<HTMLDivElement>) => {
 
     const {
-        size = 'small',
+        size = 'small',        
         ...rest } = props;
+        
 
     return (
         <MuiTextField
             ref={ref}
             margin='dense'
             fullWidth
-            size={size}
+            size={size}            
             {...rest} />
     )
 });

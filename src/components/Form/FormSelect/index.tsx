@@ -3,11 +3,14 @@ import { Controller, FieldValues } from "react-hook-form"
 import { IFormControllerSelectProps } from "domain/contract/form/iFormControllerSelectProps";
 import Select, { SelectProps } from "./select";
 import MultipleSelect from "./multipleSelect";
+import Label from "components/Label";
 
 type Props = {
-    handleChange?: () => void,
-    multipleCheckBox?: boolean,
-    size?: 'small' | 'medium';
+    handleChange?: () => void
+    multipleCheckBox?: boolean
+    size?: 'small' | 'medium'
+    topLabel?: string
+    required?: boolean
 }
 type ControllerProps<T extends FieldValues> = Props & IFormControllerSelectProps<T>
 
@@ -23,6 +26,8 @@ const FormSelect = <T extends FieldValues>(props: ControllerProps<T> & SelectPro
         size,
         multipleCheckBox,
         multiple,
+        topLabel,
+        required        
     } = props;
 
     const ITEM_HEIGHT = 48;
@@ -40,7 +45,17 @@ const FormSelect = <T extends FieldValues>(props: ControllerProps<T> & SelectPro
 
                     return (
                         <>
-
+                            {
+                                !label && topLabel &&
+                                <Label
+                                    bold
+                                    marginBottom={1}
+                                    required={required}
+                                    error={!!fieldError}
+                                    variant="body2">
+                                    {topLabel}
+                                </Label>
+                            }
                             {
                                 multipleCheckBox || multiple ?
                                     <MultipleSelect
@@ -49,9 +64,9 @@ const FormSelect = <T extends FieldValues>(props: ControllerProps<T> & SelectPro
                                         options={options}
                                         multiple={multiple}
                                         multipleCheckBox={multipleCheckBox}
-                                        value={valueArray}
-                                        renderValue={(selected) => (                                            
-                                            (selected as string[]).map((value) => {                                                
+                                        value={valueArray}                                        
+                                        renderValue={(selected: any) => (
+                                            (selected as string[]).map((value) => {
                                                 const option = options.find(option => option.description.toString() === value);
                                                 return option ? option.description : null;
                                             }).filter(Boolean).join(', ')
@@ -64,7 +79,6 @@ const FormSelect = <T extends FieldValues>(props: ControllerProps<T> & SelectPro
                                                 },
                                             },
                                         }}
-
                                         onChange={(e, value) => {
                                             field.onChange(e)
                                             handleChange && handleChange()
@@ -74,7 +88,6 @@ const FormSelect = <T extends FieldValues>(props: ControllerProps<T> & SelectPro
                                         {...field}
                                         label={label}
                                         options={options}
-                                        
                                         onChange={(e, value) => {
                                             field.onChange(e)
                                             handleChange && handleChange()

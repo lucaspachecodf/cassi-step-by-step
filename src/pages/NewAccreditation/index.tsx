@@ -20,8 +20,8 @@ const NewAccreditation = () => {
             <Title bold variant="h5">Seja um novo prestador CASSI</Title>
             <Paragraph>
               Para se credenciar à CASSI o primiero passo é registrar a sua proposta
-              que será avaliada de acordo com a necessidade de ofeta dos serviços
-              na localidade
+              que será avaliada de acordo com a necessidade de oferta dos serviços
+              na localidade.
             </Paragraph>
           </Div>
         </Grid>

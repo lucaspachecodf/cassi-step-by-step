@@ -31,16 +31,16 @@ const FAQDrawer: React.FC = () => {
         onClose={toggleDrawer(false)}
         PaperProps={{
           sx: {
-            width: isMobile ? '100%' : 300,
+            width: isMobile ? '50%' : 600,
           },
         }}>
-        <Box sx={{ width: 300, p: 2 }}>
+        <Box sx={{ width: isMobile ? '100%' : 600, p: 2 }}>
           <Typography variant="h6" gutterBottom>
             Perguntas Frequentes
           </Typography>
           <Accordion>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-              <Typography>Pergunta 1</Typography>
+              <Typography>Documentação necessária - Pessoa física</Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography>Resposta 1</Typography>
@@ -48,7 +48,7 @@ const FAQDrawer: React.FC = () => {
           </Accordion>
           <Accordion>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-              <Typography>Pergunta 2</Typography>
+              <Typography>Documentação necessária - Pessoajurídica</Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography>Resposta 2</Typography>
@@ -56,7 +56,7 @@ const FAQDrawer: React.FC = () => {
           </Accordion>
           <Accordion>
             <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-              <Typography>Pergunta 3</Typography>
+              <Typography>Conheça as vantagens de ser um credenciado</Typography>
             </AccordionSummary>
             <AccordionDetails>
               <Typography>Resposta 3</Typography>

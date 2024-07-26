@@ -20,7 +20,7 @@ const ContactDataStep = () => {
                         name="contactDataStep.contactData.name"
                         fieldError={errors.contactDataStep?.contactData?.name}
                         control={control}
-                        label="Nome para contato" />
+                        topLabel="Nome para contato" />
                 </Grid>
                 <Grid item xs={6}>
                     <FormTextFieldMask
@@ -28,7 +28,7 @@ const ContactDataStep = () => {
                         setValue={setValue}
                         name="contactDataStep.contactData.cellphone"
                         fieldError={errors.contactDataStep?.contactData?.cellphone}
-                        label="Telefone Celular"
+                        topLabel="Telefone Celular"
                         mask={cellphoneMask.mask} />
                 </Grid>
                 <Grid item xs={6}>
@@ -37,10 +37,9 @@ const ContactDataStep = () => {
                         setValue={setValue}
                         name="contactDataStep.contactData.phone"
                         fieldError={errors.contactDataStep?.contactData?.phone}
-                        label="Telefone Fixo"
+                        topLabel="Telefone Fixo"
                         mask={phoneMask.mask} />
                 </Grid>
-
 
                 <Grid item paddingLeft={2} xs={12}>
                     <Label variant="caption">
@@ -63,7 +62,7 @@ const ContactDataStep = () => {
                         name="contactDataStep.contactData.email"
                         fieldError={errors.contactDataStep?.contactData?.email}
                         control={control}
-                        label="Email" />
+                        topLabel="Email" />
                 </Grid>
 
             </GridContainer >

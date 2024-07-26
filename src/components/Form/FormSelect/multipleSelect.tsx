@@ -20,6 +20,7 @@ const MultipleSelect = forwardRef<HTMLSelectElement, SelectProps>((props, ref: F
         multiple,
         multipleCheckBox,
         value,
+        placeholder,
         onChange,
         ...rest
     } = props
@@ -34,6 +35,12 @@ const MultipleSelect = forwardRef<HTMLSelectElement, SelectProps>((props, ref: F
             {...rest}
             onChange={onChange}
         >
+            {placeholder &&
+
+                <MenuItem disabled value="">
+                    <em>{placeholder}</em>
+                </MenuItem>
+            }
             {
                 multipleCheckBox &&
                 options.map((item: IOptions) => (
